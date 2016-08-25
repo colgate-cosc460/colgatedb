@@ -1,16 +1,7 @@
-*.class
+*.class     # java class files
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-#  *.jar   # we want to include package files!
-*.war
-*.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-
-.DS_Store
-.idea
-*.iml
+.DS_Store   # hidden Mac file
+.idea       # IntelliJ IDEA stuff
+*.iml		# IntelliJ IDEA stuff
+.metadata	# Eclipse stuff
+.project	# Eclipse stuff

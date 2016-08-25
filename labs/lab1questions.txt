@@ -1,0 +1,23 @@
+After completing the lab, answer these questions.
+
+
+1. Give a specific example from the code where an interface is implemented by more than one class.
+
+
+
+2. Find two examples of enum types.  
+
+
+
+3. When writing the `toString` method of `TupleDesc` your code should be taking advantage of polymorphism.  Briefly (1-2 sentences) explain how it does.
+
+
+
+4. There is a method that can be called to create a new `IntField` object from bytes (well, more precisely, from a Java class that represents an input stream of bytes).  What is it? 
+
+
+
+5. There is a method that can be called to take an existing `StringField` object and write it out as bytes.  What is it?
+
+
+
