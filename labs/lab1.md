@@ -28,7 +28,7 @@ We will be using SQLite for this exercise.  SQLite is lightweight database manag
 		Error: near line 27: no such table: Person
 		...
 
-3. Now open `lab1.sql` in a text editor (or you can probably Eclipse or Intellij too).  You will see some documentation indicating a series of sql statements you are supposed to write.  Start by defining the two tables.  If you add definitions and re-run, you should see only 3 errors as shown below.  (If you don't see errors, you didn't define the tables according to the specification.)
+3. Now open `lab1.sql` in a text editor (or you can probably use Eclipse or Intellij too).  You will see some documentation indicating a series of sql statements you are supposed to write.  Start by defining the two tables.  If you add definitions and re-run, you should see only 3 errors as shown below.  (If you don't see errors, you didn't define the tables according to the specification.)
 
 		sqlite> .read lab1.sql
 		Error: near line 31: UNIQUE constraint failed: Person.name
@@ -60,18 +60,18 @@ A `Tuple` in ColgateDB is quite basic.  It consists of a collection of
 `Field` objects, one per field in the `Tuple`.  `Field` is an interface that different data types (e.g.,integer, string) implement.  Tuples also have a type (or schema), called a *tuple descriptor*, represented by a `TupleDesc` object.  This object consists of a collection of `TDItem` objects, one per field
 in the tuple.  Each `TDItem` specifies the field `Type` and the name of the `Field`.
 
-It is possible to create a `Tuple` object by simply calling the constructor and setting each field using the `setField` method.  In a later lab, you will parse data on disk to create tuples, using methods like the `parse` method on `Type` objects.  You will also write out data using the `serialize` method on `Field` objects.
+It is possible to create a `Tuple` object by simply calling the constructor and setting each field using the `setField` method.  In a later lab, you will parse data on disk to create tuples.
 
 **Task 1**  Implement the methods in `TupleDesc`.  You'll notice that each method currently throws an `UnSupportedOperationException`.  You can replace this line with your code.  After you implement the methods in `TupleDesc` you should be able to pass the unit tests in `TupleDescTest`.
 
 **Task 2**  Implement the methods in `Tuple`.  After you implement the methods in `Tuple` you should be able to pass the unit tests in `TupleTest`.
 
-**Task 3**  The code that you will write in this course will make heavy use of the object-oriented language features of Java.  While I hope that many of the concepts it uses were covered in 102, I realize that (a) 102 was a "long time ago" for many of you and (b) perhaps some of the concepts were not covered in detail.  Therefore, in these early labs I will ask you questions to refresh or add to your Java knowledge.  Task 3 is to answer the questions in the file titled `lab1questions.txt`.
+**Task 3**  The code that you will write in this course will make heavy use of the object-oriented language features of Java.  While I hope that many of the concepts it uses were covered in 102, I realize that (a) 102 was a "long time ago" for many of you and (b) perhaps some of the concepts were not covered in detail.  Therefore, in these early labs I will ask you questions to refresh or add to your Java knowledge.  Task 3 is to answer the questions in the file `labs/lab1questions.txt`.
 
 
 ## Milestone
 
-If the submitted code (see instructions above) passes the `TupleDescTest` and `TupleTest` then you have completed the milestone for this lab.  
+If the submitted code (see instructions above) passes the `TupleDescTest` and `TupleTest` and you have answered the questions (Task 3), then you have completed the milestone for this lab.  
 
 ## Submission instructions
 
@@ -90,6 +90,7 @@ To submit your work, you must *commit* your changes and then *push* those change
 
 			modified:   src/colgatedb/tuple/Tuple.java
 			modified:   src/colgatedb/tuple/TupleDesc.java
+			... and other files like the questions and sql exercses ...
 
 		no changes added to commit (use "git add" and/or "git commit -a") 
 
@@ -97,9 +98,10 @@ To submit your work, you must *commit* your changes and then *push* those change
 
 		$ git add -u
 		add 'src/colgatedb/tuple/Tuple.java'
-		add 'src/colgatedb/tuple/TupleDesc.java'	
+		add 'src/colgatedb/tuple/TupleDesc.java'
+		...	
 
-4. *Commit* the changes to your local repository.  Please write a commit message having the following form (where you fill in the blank).
+4. *Commit* the changes to your local repository.  Please write a commit message having the following form.  Please fill in the blank with a word or phrase that captures your sentiments (e.g., "fun", "terrifying", "invigorating", "never-ending", "delightful", etc.).
 
 		$ git commit -m 'this lab was _____'
 		[master cf5963d] this lab was _____
