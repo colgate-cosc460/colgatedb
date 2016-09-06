@@ -69,7 +69,10 @@ public class RecordId implements Serializable {
     /**
      * You should implement the hashCode() so that two equal RecordId instances
      * (with respect to equals()) have the same hashCode().
-     * 
+     * <p>
+     * Write a good hash function that combines tuple number and page id's hashcode
+     * in a principled way!
+     * <p>
      * @return An int that is the same for equal RecordId objects.
      */
     @Override

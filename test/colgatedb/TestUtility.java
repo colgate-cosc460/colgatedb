@@ -82,7 +82,7 @@ public class TestUtility {
     /**
      *
      * @param n number of columns
-     * @return a tuple with n fields of Type.INT_TYPE all equal to zero.
+     * @return a tuple with n fields of Type.INT_TYPE all equal to val.
      */
     public static Tuple getIntTuple(int val, int n) {
         int[] values = new int[n];
