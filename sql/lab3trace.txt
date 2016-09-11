@@ -1,0 +1,68 @@
+ 
+Q1
+E.T.
+Raiders of the Lost Ark
+ 
+Q2
+1937
+1939
+1981
+2009
+ 
+Q3
+Ashley White|E.T.|3|2011-01-02
+Brittany Harris|Raiders of the Lost Ark|2|2011-01-12
+Brittany Harris|Raiders of the Lost Ark|3|2011-01-30
+Brittany Harris|Raiders of the Lost Ark|5|2012-12-31
+Brittany Harris|The Sound of Music|2|2011-01-20
+Chris Jackson|E.T.|2|2011-01-22
+Chris Jackson|Raiders of the Lost Ark|4|2011-01-22
+Chris Jackson|The Sound of Music|3|2011-01-27
+Daniel Lewis|Snow White|4|2011-01-27
+Elizabeth Thomas|Avatar|3|2011-01-15
+Elizabeth Thomas|Snow White|5|2011-01-19
+James Cameron|Avatar|5|2011-01-20
+Mike Anderson|Gone with the Wind|3|2011-01-09
+Sarah Martinez|Gone with the Wind|2|2011-01-22
+Sarah Martinez|Gone with the Wind|4|2011-01-27
+ 
+Q4
+102
+105
+109
+ 
+Q5
+102
+103
+104
+105
+109
+ 
+Q6
+107|Avatar
+ 
+Q7
+Sarah Martinez
+Mike Anderson
+Daniel Lewis
+Elizabeth Thomas
+James Cameron
+ 
+Q8
+Avatar
+Gone with the Wind
+Raiders of the Lost Ark
+Snow White
+Star Wars
+The Monuments Men
+ 
+Q9
+101|201
+108|203
+ 
+Q10
+Gone with the Wind|Sarah Martinez|2011-01-22|2011-01-27|2
+Raiders of the Lost Ark|Brittany Harris|2011-01-12|2011-01-30|1
+Raiders of the Lost Ark|Brittany Harris|2011-01-12|2012-12-31|3
+Raiders of the Lost Ark|Brittany Harris|2011-01-30|2012-12-31|2
+
