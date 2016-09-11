@@ -10,7 +10,9 @@ There are two parts to this lab:
 
 ## Obtaining the Code
 
-Follow [the same instructions as lab 2](https://github.com/colgate-cosc460/colgatedb/blob/master/labs/lab2.md).
+Follow [the same instructions as lab 2](https://github.com/colgate-cosc460/colgatedb/blob/master/labs/lab2.md) except that I suggest you add the `--no-edit` flag on the `git pull` command, like so
+
+	git pull --no-edit https://github.com/colgate-cosc460/colgatedb.git master
 
 
 ## ColgateDB Instructions
