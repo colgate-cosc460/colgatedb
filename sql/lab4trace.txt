@@ -1,0 +1,45 @@
+ 
+Q1
+pepperoni
+mushroom
+ 
+Q2
+mushroom
+ 
+Q3
+Chicago Pizza|17.5
+Dominos|11
+Little Caesars|9.75
+New York Pizza|8.5
+Pizza Hut|12
+Straw Hat|9.75
+ 
+Q4
+female|4
+male|5
+ 
+Q5
+Little Caesars
+Pizza Hut
+ 
+Q6
+anchovy
+ 
+Q7
+anchovy|0
+cheese|5
+mushroom|4
+pepperoni|4
+sausage|1
+supreme|6
+ 
+Q8
+3.16666666666667
+ 
+Q9
+female|1.66666666666667
+male|2.5
+ 
+Q10
+Chicago Pizza
+
