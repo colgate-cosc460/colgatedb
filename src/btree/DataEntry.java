@@ -9,20 +9,4 @@ package btree;
  */
 public class DataEntry extends Entry {
 
-    private final int key;
-    private final Object record;
-
-    public DataEntry(int key, Object record) {
-        this.key = key;
-        this.record = record;
-    }
-
-    @Override
-    public String toString() {
-        return key + "*";
-    }
-
-    public Object getRecord() {
-        return record;
-    }
 }

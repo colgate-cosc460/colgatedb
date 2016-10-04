@@ -9,7 +9,7 @@ package btree;
  */
 public abstract class Entry {
 
-    private int key;  // initialize in constructor
+    protected int key;  // initialize in constructor
 
     public int key() {
         return key;
