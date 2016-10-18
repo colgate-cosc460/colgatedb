@@ -127,6 +127,9 @@ public class DiskManagerImpl implements DiskManager {
         File file = lookupFile(pid);
         try {
             RandomAccessFile dataFile = new RandomAccessFile(file, MODE);
+            if (dataFile.length() < pageSize * pid.pageNumber() + pageSize) {
+                throw new DiskManagerException("Attempting to read beyond end of file!");
+            }
             dataFile.seek(pageSize * pid.pageNumber());
             byte[] data = new byte[pageSize];
             dataFile.read(data);

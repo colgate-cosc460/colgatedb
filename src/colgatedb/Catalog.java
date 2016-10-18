@@ -190,7 +190,7 @@ public class Catalog {
                 TupleDesc td = new TupleDesc(typeAr, namesAr);
                 File dataFile = new File(baseFolder, name + ".dat");
                 HeapFile tabHf = addHeapFile(name, td, primaryKey, dataFile);
-                System.out.println("Added table : " + name + " with schema " + td + (primaryKey.equals("") ? "" : (" key is " + primaryKey)));
+                System.out.print("Added table : " + name + " with schema " + td + (primaryKey.equals("") ? "" : (" key is " + primaryKey)));
                 System.out.println(" Table has " + dm.getNumPages(tabHf.getId()) + " pages.");
             }
         } catch (IOException e) {
