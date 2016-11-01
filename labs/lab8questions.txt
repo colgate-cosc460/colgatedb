@@ -1,0 +1,28 @@
+Your name(s): 
+
+Task 1. 
+
+a) Explain how you modified SynchronizedThreads in task 1.
+
+
+b) Briefly describe (1-2 sentences) an alternate implementation for task 1.
+
+Task 2.
+
+Explain the deadlock that happens in Deadlock in terms of locks and threads 
+waiting on locks. The two threads in this case are alphonse and gaston. 
+
+a) What objects are being locked? 
+
+b) Who has what locks? 
+
+c) How does deadlock occur?
+
+d) Return to task 1, can deadlock occur here?  Explain why or why not.
+
+Task 3. 
+
+Explain why acquireLock uses a synchronized statement inside the body of the 
+method. In other words, why not just make the acquireLock method synchronized, 
+just like releaseLock? Will this work? Why or why not?
+	
