@@ -115,7 +115,7 @@ public class Schedule {
         boolean isMyTurn;
         synchronized (this) {
             step = schedule[this.stepIdx];
-            isMyTurn = !isDone() && step.tid.equals(tid) && !step.isCompleted;
+            isMyTurn = !isDone() && step.tid.equals(tid) && !step.isStarted;
             if (!isMyTurn) {
                 try {
                     wait();
@@ -124,6 +124,7 @@ public class Schedule {
                 }
             } else {
                 System.out.println("Taking action " + this.stepIdx + ": " + step);
+                step.isStarted = true;
                 try {
                     switch (step.action) {
                         case SHARED:
@@ -145,7 +146,14 @@ public class Schedule {
                             if (locksAcquired.get(tid).containsKey(step.pid)) {
                                 Integer stepWhenAcquired = locksAcquired.get(tid).get(step.pid);
                                 // lock should have been acquired in previous step
-                                if ((stepIdx - stepWhenAcquired) > 1) {
+                                int whenExpectedToAcquire = this.stepIdx - 1;
+                                if (step instanceof AcquiredStep) {
+                                    int temp = ((AcquiredStep)step).whenAcquired;
+                                    if (temp != -1) {
+                                        whenExpectedToAcquire = temp;
+                                    }
+                                }
+                                if (stepWhenAcquired != whenExpectedToAcquire) {
                                     throw new ScheduleException("Lock acquired too early!");
                                 }
                                 step.complete();
@@ -202,6 +210,7 @@ public class Schedule {
         TransactionId tid;
         PageId pid;
         Action action;
+        boolean isStarted;
         boolean isCompleted;
         Exception error;
 
@@ -209,6 +218,7 @@ public class Schedule {
             this.tid = tid;
             this.pid = pid;
             this.action = action;
+            isStarted = false;
             isCompleted = false;
         }
 
@@ -218,6 +228,18 @@ public class Schedule {
 
         public void complete() {
             isCompleted = true;
+        }
+    }
+
+    public static class AcquiredStep extends Step {
+        int whenAcquired = -1;   // on which step in schedule the lock is acquired (-1 to indicate previous step)
+
+        public AcquiredStep(TransactionId tid, PageId pid) {
+            this(tid, pid, -1);
+        }
+        public AcquiredStep(TransactionId tid, PageId pid, int whenAcquired) {
+            super(tid, pid, Action.ACQUIRED);
+            this.whenAcquired = whenAcquired;
         }
     }
 
