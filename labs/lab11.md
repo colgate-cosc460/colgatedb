@@ -6,7 +6,7 @@ This lab assignment is for lab on Tuesday, November 29th and is due **Friday Dec
 
 Follow [the same instructions as lab 2](https://github.com/colgate-cosc460/colgatedb/blob/master/labs/lab2.md) except that I suggest you add the `--no-edit` flag on the `git pull` command, like so
 
-	git pull --no-edit https://github.com/colgate-cosc460/colgatedb.git master
+    git pull --no-edit https://github.com/colgate-cosc460/colgatedb.git master
 
 
 ## ColgateDB Recovery
@@ -24,15 +24,21 @@ Your `AccessManagerImpl` currently requires that changes are flushed upon commit
 
 Your implementation consists of implementing some methods in `LogFileRecovery` and slightly revising your existing `AccessManagerImpl` code and `BufferManagerImpl` code.  I provide `LogFile` which provides methods for writing log records to the log file as well as `LogType` which defines the different kinds of log records. 
 
+**Task 0** Add a new constructor to `SlottedPage`.  Recovery expects to be able to read page data given only a page id and the bytes.  (The `TupleDesc` can be obtained from the Catalog.)  Add the following constructor to your `SlottedPage`.
+
+    public SlottedPage(PageId pid, byte[] bytes) {
+        this(pid, Database.getCatalog().getTupleDesc(pid.getTableId()), bytes.length, bytes);
+    }
+
 
 **Task 1** *Writing database updates to the log*.  The first task is to make sure that ColgateDB obeys the logging protocol, writing out the appropriate log records at the appropriate time.  Inside `AccessManagerImpl.unpinPage`, if the page being unpinned is dirty, then an appropriate record should be written to the log.  You should add this line
-	
-	Database.getLogFile().logWrite(dirtier, p.getBeforeImage(), p);
+    
+    Database.getLogFile().logWrite(dirtier, p.getBeforeImage(), p);
 where `p` is the page that is being unpinned and `dirtier` is the transaction who dirtied the page.  
 
 **Task 2** *Write ahead logging (WAL)*.  It is critical that changes are written and flushed to the log before the corresponding changes are flushed to disk.  To flush the contents of the log, you can simply execute the following command:
 
-	Database.getLogFile().force();
+    Database.getLogFile().force();
 It is up to you to figure out where this line of code should be added.  If you use Intellij's "find usages" command, you can see that the `LogFile.force` method is already called in several places.  You must add (at least) one more call to this method to ensure WAL.
 
 **Task 3** *Updating the before image.*  As you can see above, to write an update log record, we need information about what the page looked like *before* this transaction modified it. This information is captured in the before image.
@@ -41,7 +47,7 @@ The before image is first set when a page is read from disk.  (You should double
 
 Inside `AccessManagerImpl.transactionComplete`, you should make the following modification: if the transaction is committing, for any page `p` that was dirtied by this transaction and still residing the buffer pool, the before image of `p` must be set as follows:
 
-	p.setBeforeImage();
+    p.setBeforeImage();
 
 Hint: in order for the transaction to dirty a page it must have an exclusive lock on it, so it suffices to check all pages locked by the commiting transaction and set the before image for only those pages that are dirty (the `BufferManager.isDirty` and `BufferManager.getPage`methods come in handy here).
 
@@ -53,7 +59,7 @@ To *read* the log file, use the private field `readOnlyLog` of `LogFileRecovery`
 
 To *write* new records to the log file, use commands such as the following:
 
-	Database.getLogFile().logAbort(tidToRollback.getId());
+    Database.getLogFile().logAbort(tidToRollback.getId());
 
 Note: You will also want to make sure that you discard any page from the buffer pool any page that is being rolled back.
 
