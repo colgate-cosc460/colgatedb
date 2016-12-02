@@ -374,7 +374,6 @@ public class LogFileImpl implements LogFile {
             }
             pid = (PageId) idConsts[0].newInstance(idArgs);
 
-            Constructor<?>[] pageConsts = pageClass.getDeclaredConstructors();
             int pageSize = raf.readInt();
 
             byte[] pageData = new byte[pageSize];
@@ -384,7 +383,8 @@ public class LogFileImpl implements LogFile {
             pageArgs[0] = pid;
             pageArgs[1] = pageData;
 
-            newPage = (Page) pageConsts[0].newInstance(pageArgs);
+            Constructor<?> constructor = pageClass.getConstructor(new Class[]{PageId.class, byte[].class});
+            newPage = (Page) constructor.newInstance(pageArgs);
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -398,6 +398,8 @@ public class LogFileImpl implements LogFile {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
             throw new IOException();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
         }
         return newPage;
     }

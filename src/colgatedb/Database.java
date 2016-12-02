@@ -45,12 +45,12 @@ public class Database {
 
     private static AtomicReference<Database> _instance = new AtomicReference<Database>(new Database());
     private final Catalog _catalog;
-    private final DiskManagerImpl _diskManager;
+    private DiskManagerImpl _diskManager;
     private BufferManager _bufferManager;
     private AccessManager _accessManager;
 
     private final static String LOGFILENAME = "log";
-    private final LogFile _logfile;
+    private LogFile _logfile;
 
     /**
      * Constructor is private: ensures only one instance of Database (singleton design pattern).
@@ -150,4 +150,20 @@ public class Database {
         _instance.set(new Database());
     }
 
+    // -- new: added on 12/1/16
+    public static void setDiskManager(DiskManagerImpl diskManager) {
+        _instance.get()._diskManager = diskManager;
+    }
+
+    public static void setBufferManager(BufferManager bufferManager) {
+        _instance.get()._bufferManager = bufferManager;
+    }
+
+    public static void setAccessManager(AccessManager accessManager) {
+        _instance.get()._accessManager = accessManager;
+    }
+
+    public static void setLogFile(LogFile lf) {
+        _instance.get()._logfile = lf;
+    }
 }

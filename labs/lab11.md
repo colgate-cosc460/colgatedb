@@ -53,7 +53,7 @@ Hint: in order for the transaction to dirty a page it must have an exclusive loc
 
 **Task 4** *Implement rollback*.  Read the comments in `LogFileImpl` for a description of the log file format. You should see in `LogFileImpl` a set of functions, such as `logCommit()`, that generate appropriate log records and append them to the log.
 
-Your first job is to implement the `rollback()` function in `LogFileRecovery` This function is called from `LogFile.logAbort` which is called whenever a transaction aborts, before the transaction releases its locks. Its job is to un-do any changes the transaction may have made to the database.Your implementation should read the log file, find all update records associated with the aborting transaction, extract the before-image from each, and write the before-image to the database. 
+Your first job is to implement the `rollback()` function in `LogFileRecovery` This function is called from `LogFile.logAbort` which is called whenever a transaction aborts, before the transaction releases its locks. Its job is to un-do any changes the transaction may have made to the database. Your implementation should read the log file, find all update records associated with the aborting transaction, extract the before-image from each, and write the before-image to the database.  (*Update*: Database writes should be done by calling `DiskManager.writePage`, bypassing the `BufferManager` altogether.)
 
 To *read* the log file, use the private field `readOnlyLog` of `LogFileRecovery`, which is a read only version of the log file.  Use `readOnlyLog.seek()` to move around, and `readOnlyLog.readInt()`, `readOnlyLog.readLong()` etc. to examine the contents of a particular log record. Use `LogFile.readPageData()` to read each of the before- and after-images. In addition, use constants such as `LogFile.LONG_SIZE` and those defined in `LogType`.
 
@@ -76,8 +76,7 @@ As you develop your code, you may find the `Logfile.print()` method useful for d
 
 ### Overview of unit tests
 
-Unit tests will be provided a little later this week.  (This page will be updated when they are.)
-
+Two test classes are provided `LogRecoveryTest` and `LogRollbackTest`.  The tests are designed to test your implementation of `LogFileRecovery`.  They have minimal dependencies on the rest of your code -- in fact, I believe only your BufferManager code needs to work correctly (specifically discarding pages and checking whether a page is in the buffer pool).
 
 ## Milestone
 
